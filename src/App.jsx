@@ -1,17 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+
 import Movies from './components/movies.jsx'
 import Footer from './components/footer.jsx'
-import Task from './components/task.jsx'
+
 import './App.css'
 import Header from './components/header.jsx'
+import Addmovie from './components/addmovie';
+import { use, useState } from 'react';
 function App() {
+  const [newmovie,setnewmovie]=useState({title:"",year:""})
+   const onsubmit=(data)=>{
+     setnewmovie(data)
+     console.log(data)
+   }
+
   return (
     <>
-      <Header></Header>
-      <Movies></Movies>
+   
+      <Addmovie onsubmit={onsubmit}></Addmovie>
+      <Movies newmovie={newmovie}></Movies>
       <Footer></Footer>
     </>
      

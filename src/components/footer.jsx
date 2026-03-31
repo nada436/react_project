@@ -5,7 +5,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <div className='fixed bottom-0 w-full flex items-center justify-around p-4'>
+      <div className='sticky  bottom-0 w-full flex items-center justify-around p-4'>
         <p>© {this.currentyear} Movix. All rights reserved.</p>
         <div className="flex gap-4">
           <a href="#">Privacy Policy</a>

@@ -1,56 +1,24 @@
-import React, { Component, PureComponent } from 'react';
+import React from 'react';
+import default_poster from '../assets/default_poster.jpg';
 
-class Movie extends Component {
-  constructor(){
-    super()
-    this.state={
-        }
-  }
-    componentDidMount(){
-  console.log("componentDidMount")
+const Movie = ({ movie }) => {
 
-  fetch(`https://fooapi.com/api/movies/1`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      this.setState({
-       title: data.data.title,
-        year: data.data.year,
-        poster:data.data.poster
-      })
-    });
-  }
-  render() {
-    return (
-      <div className='space-y-2 text-mist-700 text-center'>
-        <img className="w-full" src={this.state.poster} alt="" />
-        <h1 className='text-xl max-w-72'>title:{this.state.title}</h1>
-        <h6>year:{this.state.year}</h6>
-      </div>
-    );
-  }
+  const handleError = (e) => {
+    e.target.src = default_poster;
+  };
 
-
-
- componentDidUpdate(prevProps) {
-  // Only fetch if the index prop actually changed
-  if (prevProps.index !== this.props.index) {
-    fetch(`https://fooapi.com/api/movies/${this.props.index}`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          title: data.data.title,
-          year: data.data.year,
-          poster: data.data.poster,
-        });
-      });
-  }
-}
-
-  componentWillUnmount(){
-    console.log("componentWillUnmount")
-  }
-
-}
+  return (
+    <div className='space-y-2 text-center'>
+      <img
+        className="w-full"
+        src={movie.poster}
+        alt=""
+        onError={handleError}
+      />
+      <h1 className='text-xl'>title: {movie.title}</h1>
+      <h6>year: {movie.year}</h6>
+    </div>
+  );
+};
 
 export default Movie;
